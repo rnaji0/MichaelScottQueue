@@ -1,0 +1,22 @@
+#ifndef LFQUEUE_HPP
+#define LFQUEUE_HPP
+
+#include <atomic>
+#include "Node.hpp"
+
+template <typename T>
+class LFQueue {
+public:
+    LFQueue();
+    ~LFQueue();
+
+    void enqueue(const T& value);
+    bool dequeue(T& result);
+
+private:
+    std::atomic<Node<T>*> head;
+    std::atomic<Node<T>*> tail;
+    std::atomic<size_t> queueSize(0);
+};
+
+#endif
